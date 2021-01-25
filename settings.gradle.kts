@@ -1,3 +1,3 @@
 
-rootProject.name = "SprintExample"
+rootProject.name = "SpringKotlinExample"
 

@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     kotlin("jvm") version "1.4.21"
@@ -9,6 +10,7 @@ plugins {
 
     // Persistence with JPA
     kotlin("plugin.allopen") version "1.3.61"
+    kotlin("kapt") version "1.3.61"
 }
 
 group = "io.skabongo"
@@ -37,6 +39,16 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test"){
+        exclude(module = "junit")
+        exclude(module = "mockito-core")
+    }
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("com.ninja-squad:springmockk:1.1.3")
+
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
 
 }
 
